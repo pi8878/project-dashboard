@@ -1,15 +1,16 @@
-
 // src/App.js
 import React, { useState } from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import ProjectList from './components/ProjectList';
 import AddProjectForm from './components/AddProjectForm';
+import ProjectView from './components/ProjectView';
 
 const App = () => {
     const [folders, setFolders] = useState([{ id: 1, name: 'Default Folder' }]);
     const [projects, setProjects] = useState([]);
     const [selectedFolderId, setSelectedFolderId] = useState(1);
+    const [openedProject, setOpenedProject] = useState(null);
 
     const addFolder = (name) => {
         setFolders([...folders, { id: Date.now(), name }]);
@@ -17,6 +18,7 @@ const App = () => {
 
     const selectFolder = (id) => {
         setSelectedFolderId(id);
+        setOpenedProject(null);
     };
 
     const addProject = (folderId, project) => {
@@ -24,7 +26,12 @@ const App = () => {
     };
 
     const openProject = (id) => {
-        alert(`Open project with id: ${id}`);
+        const project = projects.find(project => project.id === id);
+        setOpenedProject(project);
+    };
+
+    const closeProject = () => {
+        setOpenedProject(null);
     };
 
     const deleteProject = (id) => {
@@ -43,22 +50,45 @@ const App = () => {
         ));
     };
 
+    const deleteFolder = (id) => {
+        const folderHasProjects = projects.some(project => project.folderId === id);
+        if (!folderHasProjects) {
+            setFolders(folders.filter(folder => folder.id !== id));
+            if (selectedFolderId === id) {
+                setSelectedFolderId(folders[0]?.id || null);
+            }
+        } else {
+            alert('Cannot delete a folder that contains projects.');
+        }
+    };
+
     return (
         <div className="App">
             <Header />
             <div className="main-content">
-                <Sidebar folders={folders} addFolder={addFolder} selectFolder={selectFolder} />
+                <Sidebar
+                    folders={folders}
+                    addFolder={addFolder}
+                    selectFolder={selectFolder}
+                    deleteFolder={deleteFolder}
+                />
                 <div className="content">
-                    <h2>Projects in {folders.find(folder => folder.id === selectedFolderId)?.name}</h2>
-                    <AddProjectForm addProject={addProject} selectedFolderId={selectedFolderId} />
-                    <ProjectList
-                        projects={projects.filter(project => project.folderId === selectedFolderId)}
-                        openProject={openProject}
-                        deleteProject={deleteProject}
-                        renameProject={renameProject}
-                        moveProject={moveProject}
-                        folders={folders}
-                    />
+                    {openedProject ? (
+                        <ProjectView project={openedProject} closeProject={closeProject} />
+                    ) : (
+                        <>
+                            <h2>Projects in {folders.find(folder => folder.id === selectedFolderId)?.name}</h2>
+                            <AddProjectForm addProject={addProject} selectedFolderId={selectedFolderId} />
+                            <ProjectList
+                                projects={projects.filter(project => project.folderId === selectedFolderId)}
+                                openProject={openProject}
+                                deleteProject={deleteProject}
+                                renameProject={renameProject}
+                                moveProject={moveProject}
+                                folders={folders}
+                            />
+                        </>
+                    )}
                 </div>
             </div>
         </div>

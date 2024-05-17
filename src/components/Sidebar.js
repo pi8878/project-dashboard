@@ -1,7 +1,8 @@
 // src/components/Sidebar.js
 import React, { useState } from 'react';
+import {FaTrash} from 'react-icons/fa';
 
-const Sidebar = ({ folders, addFolder, selectFolder }) => {
+const Sidebar = ({ folders, addFolder, selectFolder, deleteFolder }) => {
     const [newFolderName, setNewFolderName] = useState('');
 
     const handleAddFolder = () => {
@@ -16,8 +17,14 @@ const Sidebar = ({ folders, addFolder, selectFolder }) => {
             <h2>Folders</h2>
             <ul>
                 {folders.map(folder => (
-                    <li key={folder.id} onClick={() => selectFolder(folder.id)}>
-                        {folder.name}
+                    <li key={folder.id}>
+                        <span onClick={() => selectFolder(folder.id)}>
+                            {folder.name}
+                        </span>
+                        <button onClick={() => deleteFolder(folder.id)}>
+                            <FaTrash/>
+                        </button>
+                        
                     </li>
                 ))}
             </ul>

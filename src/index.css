@@ -52,6 +52,24 @@ header {
   padding: 10px;
   cursor: pointer;
   border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar ul li span {
+  flex-grow: 1;
+}
+
+.sidebar ul li button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+}
+
+.sidebar ul li button:hover {
+  color: #000;
 }
 
 .sidebar ul li:hover {
@@ -76,6 +94,11 @@ header {
   width: calc(25% - 40px);
   text-align: center;
   position: relative;
+  cursor: pointer;
+}
+
+.project-item h2 {
+  margin: 0;
 }
 
 .add-project-form {
@@ -110,6 +133,7 @@ header {
   border: 1px solid #ddd;
   display: flex;
   flex-direction: column;
+  z-index: 1000;
 }
 
 .dropdown-menu button {
@@ -134,4 +158,22 @@ header {
   padding: 10px;
   border: none;
   border-top: 1px solid #ddd;
+}
+
+.project-view {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.back-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
 }

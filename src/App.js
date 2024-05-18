@@ -1,3 +1,4 @@
+
 // src/App.js
 import React, { useState } from 'react';
 import Header from './components/Header';
@@ -62,6 +63,17 @@ const App = () => {
         }
     };
 
+    const saveProjectContent = (id, content) => {
+        const updatedProjects = projects.map(project =>
+            project.id === id ? { ...project, description: content } : project
+        );
+        setProjects(updatedProjects);
+
+        // Update the currently opened project
+        const updatedProject = updatedProjects.find(project => project.id === id);
+        setOpenedProject(updatedProject);
+    };
+
     return (
         <div className="App">
             <Header />
@@ -74,7 +86,7 @@ const App = () => {
                 />
                 <div className="content">
                     {openedProject ? (
-                        <ProjectView project={openedProject} closeProject={closeProject} />
+                        <ProjectView project={openedProject} closeProject={closeProject} saveProjectContent={saveProjectContent} />
                     ) : (
                         <>
                             <h2>Projects in {folders.find(folder => folder.id === selectedFolderId)?.name}</h2>

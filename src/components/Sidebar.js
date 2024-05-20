@@ -15,6 +15,13 @@ const Sidebar = ({ folders, addFolder, selectFolder, deleteFolder }) => {
     return (
         <aside className="sidebar">
             <h2>Folders</h2>
+            <input
+                type="text"
+                value={newFolderName}
+                onChange={(e) => setNewFolderName(e.target.value)}
+                placeholder="New folder name"
+            />
+            <button onClick={handleAddFolder}>Add Folder</button>
             <ul>
                 {folders.map(folder => (
                     <li key={folder.id}>
@@ -28,13 +35,13 @@ const Sidebar = ({ folders, addFolder, selectFolder, deleteFolder }) => {
                     </li>
                 ))}
             </ul>
-            <input
+            {/* <input
                 type="text"
                 value={newFolderName}
                 onChange={(e) => setNewFolderName(e.target.value)}
                 placeholder="New folder name"
             />
-            <button onClick={handleAddFolder}>Add Folder</button>
+            <button onClick={handleAddFolder}>Add Folder</button> */}
         </aside>
     );
 };

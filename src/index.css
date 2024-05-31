@@ -67,10 +67,13 @@ header {
   border: none;
   cursor: pointer;
   color: #888;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .sidebar ul li button:hover {
   color: #000;
+  background-color: #ddd;
 }
 
 .sidebar ul li:hover {
@@ -98,11 +101,22 @@ header {
   cursor: pointer;
   word-wrap: break-word; /* Ensure text wraps within the box */
   box-sizing: border-box;
+  border-radius: 15px; /* Rounded corners */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background-color: #E1F7F5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .project-item h2 {
   margin: 0;
   font-size: 1rem; /* Adjust font size as needed */
+  word-break: break-word; /* Ensure long words break and wrap */
+  margin-bottom: 10px;
+}
+
+.project-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
 }
 
 .add-project-form {
@@ -115,14 +129,17 @@ header {
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ddd;
+  border-radius: 5px; /* Rounded corners */
 }
 
 .add-project-form button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #401F71;
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease;
 }
 
 .add-project-form button:hover {
@@ -138,6 +155,8 @@ header {
   display: flex;
   flex-direction: column;
   z-index: 1000;
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-menu button {
@@ -146,6 +165,8 @@ header {
   padding: 10px;
   cursor: pointer;
   text-align: left;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease;
 }
 
 .dropdown-menu button:hover {
@@ -156,17 +177,20 @@ header {
   padding: 10px;
   border: none;
   border-top: 1px solid #ddd;
+  border-radius: 0 0 5px 5px; /* Rounded corners at the bottom */
 }
 
 .dropdown-menu select {
   padding: 10px;
   border: none;
   border-top: 1px solid #ddd;
+  border-radius: 0 0 5px 5px; /* Rounded corners at the bottom */
 }
 
 .project-view .btn {
   margin-right: 10px;
   margin-bottom: 20px;
+  border-radius: 5px; /* Rounded corners */
 }
 
 textarea {
@@ -176,6 +200,7 @@ textarea {
   border: 1px solid #ddd;
   resize: both; /* Allow manual resizing */
   overflow: auto; /* Ensure scrolling */
+  border-radius: 5px; /* Rounded corners */
 }
 
 @media (max-width: 768px) {
